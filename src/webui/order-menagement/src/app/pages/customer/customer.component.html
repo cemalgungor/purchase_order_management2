@@ -1,0 +1,188 @@
+
+
+
+<table class="table" >
+
+
+  <thead>
+
+  <tr>
+
+    <th scope="col">Customer Name</th>
+    <th scope="col">Customer Authority</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customers of customer ">
+
+    <td>{{customers.name}}</td>
+    <td>{{customers.orderAuthority}}</td>
+    <td>
+      <svg (click)="deleteCustomer(customers.id)"  width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+      </svg>
+    </td>
+<td>
+  <button type="button" class="btn btn-outline-primary" (click)="openModal(template1)">Order Detail</button>
+  <ng-template #template1>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Order Detail</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <label >My Order </label>
+      <div *ngFor="let orders of customers.order" class="row">
+        <div class="col-md-8">
+      <input   type="text" readonly class="form-control-plaintext w-25" value="{{orders.orderName}}">
+        </div>
+        <div class="col-md-4">
+          <svg (click)="deleteOrder(orders.id)"  width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+        </svg>
+        </div>
+      </div>
+    </div>
+
+
+  </ng-template>
+  </td>
+    <td>
+      <button type="button" class="btn btn-outline-primary" (click)="openModal(templatea)">Update Order</button>
+      <ng-template #templatea>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Order Detail</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <label >My Order </label>
+          <div *ngFor="let orders of customers.order" class="row">
+            <div class="col-md-10">
+              <input  class="form-control" value="{{orders.orderName}}"  >
+              <br>
+            </div>
+            <div class="col-md-2">
+              <svg  (click)="selectedOrdersForUpdate(orders.id,orders.orderName)" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+
+      </ng-template>
+    </td>
+    <td>
+      <button type="button" class="btn btn-outline-primary" (click)="openModal(template)">Update Customer</button>
+      <ng-template #template>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Add Order</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="updateCustomerForm" (ngSubmit)="(updateCustomer(customers.id))">
+
+
+            <label>Customer Name</label>
+            <input  class="form-control" formControlName="customerName" >
+            <br>
+            <label>Select Authority</label>
+            <select (change)="selectedValue($event.target.value)" class="form-control">
+              <option value="HAS">HAS</option>
+              <option value="HAS_NOT">HAS_NOT</option>
+            </select>
+
+
+            <button  class="btn btn-primary" type="submit" [disabled]="!profileForm.valid">Submit</button>
+          </form>
+
+        </div>
+        <div>
+
+        </div>
+
+      </ng-template>
+
+
+
+    </td>
+  <td>
+
+  </td>
+  <tr>
+
+  </tbody>
+
+  <button type="button" class="btn btn-outline-primary" (click)="openModal(template)">Add Customer</button>
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add Order</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="profileForm" (ngSubmit)="addCustomer()">
+
+
+        <label>Customer Name</label>
+        <input  class="form-control" formControlName="customerName" >
+        <br>
+        <label>Select Authority</label>
+        <select (change)="selectedValue($event.target.value)" class="form-control">
+          <option value="HAS">HAS</option>
+          <option value="HAS_NOT">HAS_NOT</option>
+        </select>
+
+
+        <button  class="btn btn-primary" type="submit" [disabled]="!profileForm.valid">Submit</button>
+      </form>
+
+    </div>
+<div>
+
+</div>
+
+  </ng-template>
+  <button type="button" class="btn btn-outline-primary" (click)="openModal(template5)">List</button>
+  <ng-template #template5>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add Order</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <label >Select Customer </label>
+      <select  (change)="selectedId($event.target.value)"  class="form-control">
+        <option   *ngFor="let customers of customer"  value="{{customers.id | json}}">{{customers.name}}</option>
+      </select>
+      <div *ngFor="let products of product" class="row">
+        <div class="col-md-8">
+          <input class="form-control" type="text" placeholder="{{products.productName}}" readonly>
+        </div>
+        <div class="col-md-4">
+          <svg (click)="selectedOrders(products.productName)"  width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+
+    <button (click)="addOrder()" type="button" class="btn btn-outline-primary">Save Order</button>
+  </ng-template>
+</table>
+

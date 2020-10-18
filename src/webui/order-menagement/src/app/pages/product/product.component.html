@@ -1,0 +1,93 @@
+
+
+
+<table class="table" >
+
+
+  <thead>
+
+  <tr>
+
+    <th scope="col">Product Name</th>
+    <th scope="col">Category</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let products of product ">
+
+    <td>{{products.productName}}</td>
+    <td>{{products.category}}</td>
+    <td>
+      <svg (click)="deleteProduct(products.id)"  width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+      </svg>
+    </td>
+  <td>
+    <button type="button" class="btn btn-outline-primary ml-5" (click)="openModal(templateUpdate)">Update Product</button>
+  </td>
+    <ng-template #templateUpdate>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Add Order</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="profileForm" (ngSubmit)="updateProduct(products.id)">
+          <div>
+          <label >Update Product
+            <input type="text" required class="form-control w-100"   placeholder="{{products.productName}}" formControlName="productName" aria-describedby="basic-addon1">
+            <small class="text-muted">
+              Please enter the product
+            </small>
+
+          </label>
+          </div>
+          <label >Select Category </label>
+          <select class="form-control"  formControlName="category">
+            <option selected>Car</option>
+            <option>Food</option>
+            <option >Dress</option>
+            <option>Sport</option>
+            <option>Book</option>
+          </select>
+          <button  class="btn btn-primary" type="submit" [disabled]="!profileForm.valid">Update Product</button>
+        </form>
+
+      </div>
+    </ng-template>
+  <tr>
+
+  </tbody>
+  <button type="button" class="btn btn-outline-primary" (click)="openModal(template)">Add Product</button>
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add Order</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="profileForm" (ngSubmit)="addProduct()">
+        <div>
+      <label >Enter Product
+        <input type="text" class="form-control w-100"  formControlName="productName">
+      </label>
+        </div>
+
+      <label >Select Category </label>
+        <select class="form-control" formControlName="category">
+          <option>Car</option>
+          <option>Food</option>
+          <option>Dress</option>
+          <option>Sport</option>
+          <option>Book</option>
+        </select>
+        <button  class="btn btn-primary" type="submit" [disabled]="!profileForm.valid">Save Product</button>
+      </form>
+
+    </div>
+  </ng-template>
+</table>
