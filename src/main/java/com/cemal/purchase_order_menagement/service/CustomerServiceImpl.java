@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements  ICustomerService {
           order1.add(entity);
       }
       orderRepo.saveAll(order1);
-        return customerRepo.getOne(customer.getId());
+        return null;
     }
     @Override
     public Customer updateCustomerWithOrder(Customer customer) {
@@ -53,7 +53,7 @@ public class CustomerServiceImpl implements  ICustomerService {
         }
         orderRepo.saveAll(order1);
 
-        return  customerRepo.getOne(customer.getId());
+        return  null;
     }
 
     @Override
